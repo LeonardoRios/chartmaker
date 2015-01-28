@@ -1,0 +1,11 @@
+{
+  "name": "integrationTest",
+  "version": "1.0.0",
+  "description": "msg3 integration's test",
+  "main": "conf.js",
+  "scripts": {
+    "test": "protractor conf.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fonticons" horiz-adv-x="1000" >
+<font-face font-family="fonticons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="flight" unicode="&#xe800;" d="m0 180l80 170-80 170 100 0 113-100 180 0-125 401 99 0 225-401 258 0 37-2q39-2 76-19t37-49q0-20-17-34t-36-22-45-10-36-3-16-1l-258 0-225-401-99 0 125 401-180 0-113-100-100 0z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
