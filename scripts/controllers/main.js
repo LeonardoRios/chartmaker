@@ -8,13 +8,36 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
         largura: 500,
         altura: 300,
         Tabela: {
-            colunas: ["Índice", "Valor 1", "Valor 2"],
-            linhas: [
-                ['Work',     70, 18],
-                ['Eat',      76, 32],
-                ['Watch TV', 23, 23],
-                ['Sleep',    31, 56]
-            ]
+            colunas: ["", "Coluna 1"],
+            linhas: [['Linha 1', 0]]
+        },
+        iniciar : function() {
+            if(localStorage.Grafico){
+                var grafico = JSON.parse(localStorage.Grafico);
+                this.nome = grafico.nome;
+                this.largura = grafico.largura;
+                this.altura = grafico.altura;
+                this.tipo = grafico.tipo;
+                this.Tabela = grafico.Tabela;
+                $scope.Visual.iniciarGrafico();
+            }else{
+                this.reiniciar();
+            }
+        },
+        salvar: function(){
+            localStorage.Grafico = JSON.stringify($scope.Grafico);
+        },
+        reiniciar: function(){
+            this.nome = "";
+            this.largura = 500;
+            this.altura = 300;
+            this.Tabela = {
+                colunas: ["", "Coluna 1"],
+                linhas: [
+                    ['Linha 1', 0],
+                ]
+            };
+            $scope.Visual.iniciarGrafico();
         }
     }
 
@@ -25,7 +48,8 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             Plugins.Grafico.iniciar("grafico", $scope.Grafico.tipo);
             Plugins.Grafico.Dados.colunas($scope.Grafico.Tabela.colunas);
             Plugins.Grafico.Dados.linhas($scope.Grafico.Tabela.linhas);
-            Plugins.Grafico.exibir($scope.Grafico.nome, $scope.Grafico.largura, $scope.Grafico.altura);
+            Plugins.Grafico.exibir($scope.Grafico.Tabela.colunas[0], $scope.Grafico.largura, $scope.Grafico.altura);
+            $scope.Grafico.salvar();
         },
         Linha: {
             adicionar: function(){
@@ -99,14 +123,14 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             download: function(){
                 Plugins.Grafico.Imagem.converter("grafico","imagem");
                 var link = document.createElement("a");
-                link.download = $scope.Grafico.nome;
+                link.download = $scope.Grafico.Tabela.colunas[0] || "grafico_"+$scope.Grafico.tipo;
                 link.href = document.getElementById("imagem").children[0].src
                 link.click();
             }
         }
     }
 
-
+    $scope.Grafico.iniciar();
     $scope.Visual.abrirGrafico();
 }]);
 
