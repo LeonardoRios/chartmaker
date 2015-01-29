@@ -1,0 +1,55 @@
+<html>
+<body>
+	<input type="text" value="msgApp" id="modulo" placeholder="M&oacute;dulo" /><br>
+	<input type="text" value="" id="controller" placeholder="Controller" /><br>
+	<textarea id="dependencias" placeholder="Depend&ecirc;ncias" style="width: 100%;height: 60px;" ></textarea><br>
+	<textarea id="variaveis" placeholder="Vari&aacute;veis do Controller" style="width: 100%; height: 60px;" ></textarea>
+	<button onclick="gerarCodigo();" >Gerar C&oacute;digo</button>
+
+	<textarea id="resultado" onclick="this.focus();this.select()" readonly="readonly" style="width:100%; min-height: 430px; background-color: #eee;" ></textarea>
+</body>
+</html>
+
+<script>
+	function gerarCodigo(){
+		var modulo = getVal('modulo'),
+		controller = getVal('controller'),
+		dependencias = getVal('dependencias').replace(/ /gi,"").replace(/'/gi,"").replace(/"/gi,"").split(','),
+		variaveis = getVal('variaveis').replace(/ /gi,"").split(','),
+		saida = "";
+
+		dependencias = ["$controller","$rootScope"].concat(dependencias);
+		variaveis = ["Ctrl","$rootScope"].concat(variaveis);
+
+		saida +=	"beforeEach(module('"+modulo+"'));\nvar " + variaveis.join(',') + ",$scope;\n\n";
+		saida += 	"beforeEach(inject(function(_" + dependencias.join('_,_') + "_) {\n";
+
+		for(var i = 1 ; i < variaveis.length; i++){
+			saida += "	" + variaveis[i] + " = _" + dependencias[i] + "_;\n";
+		}
+		saida += "	$scope = _$rootScope_.$new();\n";
+
+		saida += "	Ctrl = _$controller_('" + controller + "',{\n";
+
+		saida += '		"$scope" : $scope,';
+		for(var i = 1 ; i < variaveis.length; i++){
+			saida += ' "' + variaveis[i] + '" : ' + variaveis[i] + ", ";
+		}
+		saida += "\n	});\n";
+
+		saida += "}));"
+
+
+		setVal('resultado', saida);
+		document.getElementById('resultado').click();
+	}
+
+	function getVal(elementId){
+		return document.getElementById(elementId).value;
+	}
+
+	function setVal(elementId,val){
+		return document.getElementById(elementId).value = val;
+	}
+</script>
+

@@ -1,0 +1,20 @@
+html, body, #divCorpoConteudo {
+    height: 100%;
+}
+
+body > #divCorpoConteudo {
+    height: auto;
+    min-height: 100%;
+}
+
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
+
+#divCorpoConteudo {
+    padding-bottom: 4em;
+}

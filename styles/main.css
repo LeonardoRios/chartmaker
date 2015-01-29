@@ -1,0 +1,15 @@
+#grafico-configuracoes button, #grafico-configuracoes input{
+    min-height: 35px;
+    box-sizing: border-box;
+}
+
+#grafico-configuracoes button{
+    display: block;
+    min-width: 175px;
+    text-align: left;
+}
+
+.tabela-indices{
+    background-color: #2E6DA3;
+    color: white;
+}

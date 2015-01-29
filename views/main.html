@@ -1,0 +1,64 @@
+<div id="grafico-configuracoes" >
+
+        <div class="btn-group gcm-radioButton" ng-click="Visual.iniciarGrafico()" >
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'area'">  <i class="fa fa-area-chart" ></i> &Aacute;rea</label>
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'barra'"> <i class="fa fa-bar-chart" ></i> Barra</label>
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'coluna'"><i class="fa fa-bar-chart" ></i> Coluna</label>
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'degrau'"><i class="fa fa-area-chart" ></i> Degrau</label>
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'linha'"> <i class="fa fa-line-chart" ></i> Linha</label>
+                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'pizza'"> <i class="fa fa-pie-chart"></i> Pizza</label>
+        </div>
+
+        <button  class="btn btn-primary" ng-click="Grafico.reiniciar()" ><i class="fa fa-file-o"></i> Novo</button>
+        <button  class="btn btn-primary" ng-click="Visual.Imagem.download()" ><i class="fa fa-download"></i> Salvar</button>
+        <button  class="btn btn-primary" ng-click="Visual.abrirGrafico()" ><i class="fa fa-list-alt"></i> Exibir</button>
+
+
+        <input type="range" min="300" ng-model="Grafico.largura" ng-change="Visual.iniciarGrafico()" style="width: initial;" max="900"/>Largura: {{Grafico.largura}}px
+        <input type="range" min="200" ng-model="Grafico.altura" ng-change="Visual.iniciarGrafico()"  style="width: initial;" max="900"/>Altura: {{Grafico.altura}}px
+</div>
+
+
+
+
+<table>
+        <thead>
+                <tr>
+                        <td ng-hide="Grafico.tipo==='pizza' && $index>1" ng-repeat="campo in Grafico.Tabela.colunas track by $index" style="text-align: center;" >
+                                <button ng-if="$index!==0" class="btn btn-danger" ng-click="Visual.Coluna.remover($index)" ><i class="fa fa-times"></i></button>
+                        </td>
+                        <td ng-hide="Grafico.tipo==='pizza'" >
+                                <button  class="btn btn-success" ng-click="Visual.Coluna.adicionar()" ><i class="fa fa-plus"></i></button>
+                        </td>
+                </tr>
+                <tr>
+                        <td ng-repeat="campo in Grafico.Tabela.colunas track by $index" >
+                                <input ng-if="$index!==0" class="btn-primary" type="text" ng-change="Visual.iniciarGrafico()" ng-model="Grafico.Tabela.colunas[$index]" ng-hide="Grafico.tipo==='pizza' && $index>1" />
+                                <input ng-if="$index===0" class="btn-primary" type="text" ng-change="Visual.iniciarGrafico()" ng-model="Grafico.Tabela.colunas[$index]" placeholder="Nome do Gráfico" />
+                        </td>
+                </tr>
+        </thead>
+        <tbody>
+                <tr ng-repeat="linha in Grafico.Tabela.linhas track by $index" >
+                        <td ng-repeat="campo in linha track by $index" ng-hide="Grafico.tipo==='pizza' && $index>1"  >
+                                <input ng-show="$index===0" class="btn-primary" type="text" ng-change="Visual.iniciarGrafico()" ng-model="Grafico.Tabela.linhas[$parent.$index][$index]" />
+                                <input ng-hide="$index===0" type="number" ng-change="Visual.iniciarGrafico()" ng-model="Grafico.Tabela.linhas[$parent.$index][$index]" />
+                        </td>
+                        <td  >
+                                <button class="btn btn-danger" ng-click="Visual.Linha.remover($index)" ><i class="fa fa-times"></i></button>
+                        </td>
+                </tr>
+                <tr>
+                        <td  >
+                                <button  class="btn btn-success" ng-click="Visual.Linha.adicionar()" ><i class="fa fa-plus"></i></button>
+                        </td>
+                </tr>
+        </tbody>
+</table>
+
+
+
+
+
+<div id="grafico"></div>
+<div id="imagem" style="display: none;" ></div>
