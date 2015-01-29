@@ -13,3 +13,7 @@
     background-color: #2E6DA3;
     color: white;
 }
+
+#tabela-container{
+    overflow: auto;
+}
