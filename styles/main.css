@@ -2,7 +2,6 @@
     position: fixed;
     top: 0;
     left: 250px;
-    padding-top: 25px;
     z-index: 101;
     cursor: pointer;
 }
@@ -10,11 +9,17 @@
 .graf-conf-opt {
     float: left;
     width: 160px;
+    padding-top: 25px;
+}
+
+.graf-conf-opt:hover {
+    background-color: rgba(0,0,0,0.2);
 }
 
 span.opt-title {
     color: white;
     font-size: 18px;
+    padding-left: 10px;
 }
 
 .graf-conf-opt:hover span.opt-title{
