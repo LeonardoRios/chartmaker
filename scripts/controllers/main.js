@@ -115,8 +115,12 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
                 hide: {
                     effect: "drop",
                     duration: 1000
+                },
+                close: function(){
+                    $('#btn-visualizar').show(200);
                 }
             });
+            $('#btn-visualizar').hide(200);
             $( "#grafico" ).dialog( "open" );
         },
         Imagem: {

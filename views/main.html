@@ -1,22 +1,36 @@
-<div id="grafico-configuracoes" >
+<nav id="grafico-configuracoes" >
 
-        <div class="btn-group gcm-radioButton" ng-click="Visual.iniciarGrafico()" >
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'area'">  <i class="fa fa-area-chart" ></i> &Aacute;rea</label>
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'barra'"> <i class="fa fa-bar-chart" ></i> Barra</label>
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'coluna'"><i class="fa fa-bar-chart" ></i> Coluna</label>
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'degrau'"><i class="fa fa-area-chart" ></i> Degrau</label>
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'linha'"> <i class="fa fa-line-chart" ></i> Linha</label>
-                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'pizza'"> <i class="fa fa-pie-chart"></i> Pizza</label>
+        <div class="graf-conf-opt" >
+                <span class="opt-title" >Arquivo</span>
+                <div class="opt-options btn-primary" id="opt-arquivo" >
+                        <button  class="btn btn-primary" ng-click="Grafico.reiniciar()" ><i class="fa fa-file-o"></i> Novo</button>
+                        <button  class="btn btn-primary"  ><i class="fa fa-folder-open-o"></i> Abrir</button>
+                        <button  class="btn btn-primary" ng-click="Visual.Imagem.download()" ><i class="fa fa-download"></i> Salvar</button>
+                        <button  class="btn btn-primary" ng-click="Visual.abrirGrafico()" id="btn-visualizar" ><i class="fa fa-list-alt"></i> Visualizar</button>
+                </div>
+        </div>
+        <div class="graf-conf-opt" >
+                <span class="opt-title" >Tipo</span>
+                <div class="opt-options btn-primary" id="opt-tipo" >
+                        <div class="btn-group gcm-radioButton" ng-click="Visual.iniciarGrafico()" >
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'area'">  <i class="fa fa-area-chart" ></i> &Aacute;rea</label>
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'barra'"> <i class="fa fa-bar-chart" ></i> Barra</label>
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'coluna'"><i class="fa fa-bar-chart" ></i> Coluna</label>
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'degrau'"><i class="fa fa-area-chart" ></i> Degrau</label>
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'linha'"> <i class="fa fa-line-chart" ></i> Linha</label>
+                                <label class="btn btn-primary" ng-model="Grafico.tipo" btn-radio="'pizza'"> <i class="fa fa-pie-chart"></i> Pizza</label>
+                        </div>
+                </div>
+        </div>
+        <div class="graf-conf-opt" >
+                <span class="opt-title" >Tamanho</span>
+                <div class="opt-options btn-primary" id="opt-tamanho" >
+                        <input type="range" min="300" ng-model="Grafico.largura" ng-change="Visual.iniciarGrafico()" style="width: initial;" max="900"/>Largura: {{Grafico.largura}}px
+                        <input type="range" min="200" ng-model="Grafico.altura" ng-change="Visual.iniciarGrafico()"  style="width: initial;" max="900"/>Altura: {{Grafico.altura}}px
+                </div>
         </div>
 
-        <button  class="btn btn-primary" ng-click="Grafico.reiniciar()" ><i class="fa fa-file-o"></i> Novo</button>
-        <button  class="btn btn-primary" ng-click="Visual.Imagem.download()" ><i class="fa fa-download"></i> Salvar</button>
-        <button  class="btn btn-primary" ng-click="Visual.abrirGrafico()" ><i class="fa fa-list-alt"></i> Exibir</button>
-
-
-        <input type="range" min="300" ng-model="Grafico.largura" ng-change="Visual.iniciarGrafico()" style="width: initial;" max="900"/>Largura: {{Grafico.largura}}px
-        <input type="range" min="200" ng-model="Grafico.altura" ng-change="Visual.iniciarGrafico()"  style="width: initial;" max="900"/>Altura: {{Grafico.altura}}px
-</div>
+</nav>
 
 
 

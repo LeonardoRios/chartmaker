@@ -5,6 +5,7 @@ html, body, #divCorpoConteudo {
 body > #divCorpoConteudo {
     height: auto;
     min-height: 100%;
+    margin-top: 60px;
 }
 
 #footer {
