@@ -3,7 +3,7 @@
     top: 0;
     left: 250px;
     padding-top: 25px;
-    z-index: 1;
+    z-index: 101;
     cursor: pointer;
 }
 
@@ -41,6 +41,11 @@ span.opt-title {
     text-align: left;
     clear: both;
     padding: 10px;
+    box-sizing: border-box;
+}
+
+#opt-tamanho{
+    padding-left: 15px;
     box-sizing: border-box;
 }
 
