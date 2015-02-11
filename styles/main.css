@@ -1,13 +1,58 @@
+#grafico-configuracoes{
+    position: fixed;
+    top: 0;
+    left: 250px;
+    padding-top: 25px;
+    z-index: 101;
+    cursor: pointer;
+}
+
+.graf-conf-opt {
+    float: left;
+    width: 160px;
+}
+
+span.opt-title {
+    color: white;
+    font-size: 18px;
+}
+
+.graf-conf-opt:hover span.opt-title{
+    text-decoration: underline;
+}
+
+.opt-options{
+    width: 160px;
+    margin-top: 10px;
+    display: none;
+}
+
+.graf-conf-opt:hover .opt-options{
+    display: block;
+}
+
 #grafico-configuracoes button, #grafico-configuracoes input{
     min-height: 35px;
+}
+
+#grafico-configuracoes #opt-arquivo button, #grafico-configuracoes #opt-tipo label{
+    display: block;
+    min-width: 100%;
+    text-align: left;
+    clear: both;
+    padding: 10px;
     box-sizing: border-box;
 }
 
-#grafico-configuracoes button{
-    display: block;
-    min-width: 175px;
-    text-align: left;
+#opt-tamanho{
+    padding-left: 15px;
+    box-sizing: border-box;
 }
+
+#grafico-configuracoes .gcm-radioButton{
+    width: 100%;
+}
+
 
 .tabela-indices{
     background-color: #2E6DA3;
@@ -16,4 +61,5 @@
 
 #tabela-container{
     overflow: auto;
+    margin-top: 10px;
 }
