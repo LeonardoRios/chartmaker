@@ -1,7 +1,7 @@
 var DB = (function(){
 	
 	var _collections = {
-		systemFunction : new Nedb
+		Tick : new Nedb
 	};
 	
 	var angularObj = {
@@ -53,14 +53,14 @@ var DB = (function(){
 	}
 	
 	var that = {
-		systemFunction : {
-			insert : function(obj   , callback){ _functions.insert('systemFunction',obj,callback)},
-			update : function(obj   , callback){ _functions.update('systemFunction',obj,callback)}, 
-			del    : function(search, callback){ _functions.del('systemFunction',search,callback)},
-			clear  : function(callback)		   { _functions.clear('systemFunction',callback)},
-			find   : function(search, callback){ _functions.find('systemFunction',search,callback)},
-			findOne: function(search, callback){ _functions.findOne('systemFunction',search,callback)},
-			findAll: function(callback)		   { _functions.findAll('systemFunction',callback)}
+		Tick : {
+			insert : function(obj   , callback){ _functions.insert('Tick',obj,callback)},
+			update : function(obj   , callback){ _functions.update('Tick',obj,callback)},
+			del    : function(search, callback){ _functions.del('Tick',search,callback)},
+			clear  : function(callback)		   { _functions.clear('Tick',callback)},
+			find   : function(search, callback){ _functions.find('Tick',search,callback)},
+			findOne: function(search, callback){ _functions.findOne('Tick',search,callback)},
+			findAll: function(callback)		   { _functions.findAll('Tick',callback)}
 		}
 	}
 	
