@@ -1,9 +1,9 @@
-gaugeApp.controller('CtrlMain',['$scope', function($scope){
-
+gaugeApp.controller('CtrlMain',['$scope','FileReaderFactory', function($scope,FileReaderFactory){
+    TESTE = $scope;
     $scope.Grafico = {
         nome: "",
         tipo: "area",
-        linhas : 1,
+        linhas: 1,
         colunas: 2,
         largura: 500,
         altura: 300,
@@ -11,8 +11,8 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             colunas: ["", "Coluna 1"],
             linhas: [['Linha 1', 0]]
         },
-        iniciar : function() {
-            if(localStorage.Grafico){
+        iniciar: function () {
+            if (localStorage.Grafico) {
                 var grafico = JSON.parse(localStorage.Grafico);
                 this.nome = grafico.nome;
                 this.largura = grafico.largura;
@@ -20,14 +20,14 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
                 this.tipo = grafico.tipo;
                 this.Tabela = grafico.Tabela;
                 $scope.Visual.iniciarGrafico();
-            }else{
+            } else {
                 this.reiniciar();
             }
         },
-        salvar: function(){
+        salvar: function () {
             localStorage.Grafico = JSON.stringify($scope.Grafico);
         },
-        reiniciar: function(){
+        reiniciar: function () {
             this.nome = "";
             this.largura = 500;
             this.altura = 300;
@@ -41,7 +41,6 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
         }
     }
 
-
     $scope.Visual = {
         iniciarGrafico: function(){
             // manometro e pizza -> 1 valor apenas
@@ -52,15 +51,20 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             $scope.Grafico.salvar();
         },
         Linha: {
-            adicionar: function(){
+            adicionar: function(valores){
                 var tabela = $scope.Grafico.Tabela,
                 total = tabela.colunas.length-1,
                 novaLinha = ["Linha " + (tabela.linhas.length+1)];
-                while(total--){
-                    novaLinha.push(0);
+                if(valores){
+                    novaLinha =  novaLinha.concat(valores);
+                    tabela.linhas.push(novaLinha);
+                }else{
+                    while(total--){
+                        novaLinha.push(0);
+                    }
+                    tabela.linhas.push(novaLinha);
+                    $scope.Visual.iniciarGrafico();
                 }
-                tabela.linhas.push(novaLinha);
-                $scope.Visual.iniciarGrafico();
             },
             remover: function(index){
                 var tabela = $scope.Grafico.Tabela;
@@ -73,16 +77,19 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             }
         },
         Coluna: {
-            adicionar: function(){
+            adicionar: function(nome){
                 if($scope.Grafico.tipo === 'pizza'){
                     return false;
                 }
                 var tabela = $scope.Grafico.Tabela;
-                tabela.colunas.push("Coluna " + tabela.colunas.length );
+                nome = nome || "Coluna " + tabela.colunas.length
+                tabela.colunas.push(nome);
                 tabela.linhas.forEach(function(linha){
                     linha.push(0);
                 });
-                $scope.Visual.iniciarGrafico();
+                if(!nome){
+                    $scope.Visual.iniciarGrafico();
+                }
             },
             remover: function(index){
                 if(index === 0){
@@ -133,6 +140,24 @@ gaugeApp.controller('CtrlMain',['$scope', function($scope){
             }
         }
     }
+
+    $scope.Arquivo = new FileReaderFactory('Tick', document.getElementById('fileGraph'), function(fileContent){
+        /*$scope.Grafico.reiniciar();
+        $scope.Grafico.Tabela = {
+            colunas: [""],
+            linhas: [
+                ['Linha 1'],
+            ]
+        };
+        for(var i = 0; i < fileContent[0].length; i++){
+            $scope.Visual.Coluna.adicionar(fileContent[0][i]);
+        }
+        for(var i = 1; i < fileContent.length; i++){
+            $scope.Visual.Linha.adicionar(fileContent[i]);
+        }*/
+
+        $scope.$apply();
+    });
 
     $scope.Grafico.iniciar();
     $scope.Visual.abrirGrafico();

@@ -36,11 +36,11 @@ span.opt-title {
     display: block;
 }
 
-#grafico-configuracoes button, #grafico-configuracoes input{
+#grafico-configuracoes button, #grafico-configuracoes label.btn, #grafico-configuracoes input{
     min-height: 35px;
 }
 
-#grafico-configuracoes #opt-arquivo button, #grafico-configuracoes #opt-tipo label{
+#grafico-configuracoes #opt-arquivo button, #grafico-configuracoes #opt-tipo label, #grafico-configuracoes #opt-arquivo label{
     display: block;
     min-width: 100%;
     text-align: left;
@@ -67,4 +67,6 @@ span.opt-title {
 #tabela-container{
     overflow: auto;
     margin-top: 10px;
+    resize: both;
+    height: 800px;
 }

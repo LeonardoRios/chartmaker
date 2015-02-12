@@ -4,9 +4,11 @@
                 <span class="opt-title" >Arquivo</span>
                 <div class="opt-options btn-primary" id="opt-arquivo" >
                         <button  class="btn btn-primary" ng-click="Grafico.reiniciar()" ><i class="fa fa-file-o"></i> Novo</button>
-                        <button  class="btn btn-primary"  ><i class="fa fa-folder-open-o"></i> Abrir</button>
+                        <label for="fileGraph" class="btn btn-primary" ><div><i class="fa fa-folder-open-o"></i> Abrir</div></label>
                         <button  class="btn btn-primary" ng-click="Visual.Imagem.download()" ><i class="fa fa-download"></i> Salvar</button>
                         <button  class="btn btn-primary" ng-click="Visual.abrirGrafico()" id="btn-visualizar" ><i class="fa fa-list-alt"></i> Visualizar</button>
+
+                        <input type="file" style="display:none;" id="fileGraph" name="fileGraph" />
                 </div>
         </div>
         <div class="graf-conf-opt" >
